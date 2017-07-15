@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-
-import 'rxjs/add/operator/map';
 
 import { Post } from '../../shared/model/post/post.model';
+
+import { PostService } from '../service/post.service';
 
 @Component({
   selector: 'app-post-list',
@@ -13,18 +11,22 @@ import { Post } from '../../shared/model/post/post.model';
 })
 export class PostListComponent implements OnInit {
 
-  url : string = 'https://zmiter.pythonanywhere.com/theBlog/api/v1.0/posts';
-
   posts: Post[] = [
     new Post('First!', 'This is my 1st blog!'),
-    new Post('Second', 'I am m bored with 2nd post')
+    new Post('Second', 'I am bored with 2nd post')
   ];
 
-  currentPost: Post;
+  currentPost: Post = this.posts[0];
 
-  constructor(private http: Http) {
-    this.currentPost = this.posts[0];
-    this.getPosts();
+  constructor(private postService: PostService) {
+    postService.getPosts().subscribe(
+      result => {
+        this.posts = result.posts;
+        this.setCurrentPost(this.posts[0]);
+      },
+      err => {
+        console.log(err);
+      });
   }
 
   setCurrentPost(post: Post) {
@@ -32,14 +34,7 @@ export class PostListComponent implements OnInit {
   }
 
   getPosts() {
-    return this.http.get(this.url).map((res:Response) => res.json()).subscribe(
-                               result => {
-                                 this.posts = result.posts;
-                               },
-                                err => {
-                                    // Log errors if any
-                                    console.log(err);
-                                });
+    return this.posts;
   }
 
   ngOnInit() {
