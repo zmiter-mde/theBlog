@@ -11,12 +11,9 @@ import { PostService } from '../service/post.service';
 })
 export class PostListComponent implements OnInit {
 
-  posts: Post[] = [
-    new Post('First!', 'This is my 1st blog!'),
-    new Post('Second', 'I am bored with 2nd post')
-  ];
+  posts: Post[] = [];
 
-  currentPost: Post = this.posts[0];
+  currentPost: Post = new Post(null, '', '');
 
   constructor(private postService: PostService) {
     postService.getPosts().subscribe(
