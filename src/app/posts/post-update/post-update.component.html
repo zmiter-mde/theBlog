@@ -1,0 +1,24 @@
+<app-panel [title]="createPostTitle">
+  <div class="row">
+    <div class="xs-col-12">
+      <form (submit)="submit(); $event.preventDefault();">
+        <div class="form-group">
+          <h2>Create new post</h2>
+          <div class="row">
+            <div class="xs-col-12">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="xs-col-12">
+              <label for="content">Content</label>
+              <textarea name="content" rows="8" cols="80" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)="submit()">Create</button>
+      </form>
+    </div>
+  </div>
+</app-panel>
