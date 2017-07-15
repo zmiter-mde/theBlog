@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12" (click)="toggle()">
-    <button class="btn btn-primary">{{ title }}</button>
+    <h2>{{ title }}<span [ngClass]="{dropup: opened}"><span class="caret"></span></span></h2>
   </div>
   <div  class="col-xs-12" [ngClass]="{hide: !opened}">
     <ng-content></ng-content>
