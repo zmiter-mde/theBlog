@@ -13,7 +13,7 @@ import { Post } from '../../shared/model/post/post.model';
 })
 export class PostListComponent implements OnInit {
 
-  url : string = 'http://zmiter.pythonanywhere.com/theBlog/api/v1.0/posts';
+  url : string = 'https://zmiter.pythonanywhere.com/theBlog/api/v1.0/posts';
 
   posts: Post[] = [
     new Post('First!', 'This is my 1st blog!'),
