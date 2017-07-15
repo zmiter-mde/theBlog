@@ -1,22 +1,29 @@
-<app-panel [title]="createPostTitle">
+<app-panel [title]="getCreatePostTitle()">
   <div class="row">
-    <div class="xs-col-12">
+    <div class="col-xs-12">
       <form (submit)="submit(); $event.preventDefault();">
         <div class="form-group">
           <div class="row">
             <div class="xs-col-12">
               <label for="title">Title</label>
-              <input type="text" name="title" class="form-control"/>
+              <input type="text"
+                     name="title"
+                     class="form-control"
+                     [(ngModel)]="currentPost.title"/>
             </div>
           </div>
           <div class="row">
             <div class="xs-col-12">
               <label for="content">Content</label>
-              <textarea name="content" rows="8" cols="80" class="form-control"></textarea>
+              <textarea name="content"
+                        rows="8"
+                        class="form-control"
+                        [(ngModel)]="currentPost.content">
+              </textarea>
             </div>
           </div>
         </div>
-        <button type="button" class="btn btn-success" (click)="submit()">Create</button>
+        <button type="button" class="btn btn-success" (click)="submit()">{{ getUpsertButtonTitle() }}</button>
       </form>
     </div>
   </div>
